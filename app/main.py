@@ -74,7 +74,8 @@ async def lifespan(app: FastAPI):
     )
 
     app.state.loaded_model = loaded_model
-    app.state.model_version = loaded_model.model_sha256[:12]
+    app.state.model_version = loaded_model.model_version[:12]
+    app.state.artifact_sha256 = loaded_model.artifact_sha256
     app.state.inference_semaphore = inference_semaphore
     app.state.ready = True
 
@@ -86,7 +87,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="PerturbGate",
-    version="0.3.0",
+    version="0.4.0",
     description=(
         "A stability-gated FastAPI inference service "
         "with local perturbation testing."
@@ -297,6 +298,7 @@ async def readyz(request: Request) -> dict[str, str]:
     return {
         "status": "ready",
         "model_version": request.app.state.model_version,
+        "artifact_sha256": request.app.state.artifact_sha256,
     }
 
 

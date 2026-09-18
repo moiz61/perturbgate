@@ -28,6 +28,7 @@ def test_readyz(client):
 
     assert body["status"] == "ready"
     assert len(body["model_version"]) == 12
+    assert len(body["artifact_sha256"]) == 64
 
 
 def test_stable_input_is_accepted(client):
