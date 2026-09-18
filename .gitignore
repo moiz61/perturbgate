@@ -1,0 +1,28 @@
+# Python virtual environment
+.venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated model artifact
+artifacts/model.joblib
+
+# Temporary/log files
+*.log
+*.tmp
+.DS_Store
+
+# IDE/editor local state
+.vscode/
+.idea/
+
+# Coverage output
+.coverage
+htmlcov/
+
+# Local environment/secrets
+.env
+.env.*
+!.env.example
